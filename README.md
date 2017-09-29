@@ -1,8 +1,10 @@
 # setup
 
 - install python3
+
 - setup dev
 ```
+rm -r myvenv
 python3 -m venv myvenv
 
 ls
@@ -20,12 +22,47 @@ pip install beautifulsoup4
 
 - "No module named":https://qiita.com/tukiyo3/items/d51a3a60bd158bbcc579 
 
+# usage
+
+- init
+```
+soup = BeautifulSoup(html, "html.parser")
+```
+- get element
+```
+soup.find_all("a")
+soup.find("a")
+soup.find_all("a", attrs={"class": "link", "href": "/link"})
+
+import re
+soup.find_all(re.compile("^b"))
+soup.find_all("a", text=re.compile("hello"))
+
+soup.select('a[href^="http://"]')
+```
+- edit
+```
+a = soup.find("a")
+a["target"] = "_blank"
+
+```
+- output
+```
+soup.div.prettify()
+```
+
+- documentation
+ - https://qiita.com/itkr/items/513318a9b5b92bd56185
+ - https://www.crummy.com/software/BeautifulSoup/bs4/doc/#get-text 
+
+
+
 # my env
 
 ```
 pip freeze | grep -e request -e lxml -e beautiful -e python
 
-beautifulsoup4==4.6.0
+beautifulsoup4==4.6.0 
 lxml==4.0.0
 requests==2.18.4
 
