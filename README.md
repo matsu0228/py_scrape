@@ -67,3 +67,26 @@ lxml==4.0.0
 requests==2.18.4
 
 ```
+
+# connect db
+
+- @ marriadb_con/connect_lib
+- connect db
+```
+import MySQLdb
+
+def connect_lib():
+    connection = MySQLdb.connect(
+        host="localhost",
+        db="news",
+        user="***", 
+        passwd="***"
+    )
+    return connection
+```
+- insert
+```
+def insert_data(cur, con, data):
+    cur.executemany("insert into sample (id, title, link) values (%s, %s, %s)", data)
+    con.commit()
+```
